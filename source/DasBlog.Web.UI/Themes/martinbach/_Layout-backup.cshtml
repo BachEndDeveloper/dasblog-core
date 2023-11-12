@@ -1,40 +1,47 @@
-﻿<!DOCTYPE HTML>
-<!--
-Prologue by HTML5 UP
-html5up.net |
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+﻿@inject IDasBlogSettings dasBlogSettings
+<!DOCTYPE html>
 <html>
 <head>
-    @* <title>Prologue by HTML5 UP</title> *@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+    <partial name="_HtmlHeadPartial"/>
+    <partial name="_HtmlRSSPartial"/>
+    <partial name="_TwitterCardPartial"/>
+    <partial name="_OpenGraphPartial"/>
+    <partial name="_BlogPostingSchemaOrgPartial"/>
+
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/> *@
+    <link rel="stylesheet" href="~/js/enlighterJS/enlighterjs.min.css"/>
     <link rel="stylesheet" href="~/assets/css/main.css"/>
 
     <partial name="_HtmlThemePartial"/>
 
 </head>
+
 <body class="is-preload">
 
-<!-- Header -->
+<!------ Header ---->
 <div id="header">
 
     <div class="top">
-
-        <!-- Logo -->
+        <!----- Logo ------>
         <div id="logo">
             <span class="image avatar48">
                 <img src="images/avatar.jpg" alt=""/>
             </span>
-            <h1 id="title">Jane Doe</h1>
+            <h1 id="title1">
+                <site-title/>
+            </h1>
+            <h1 id="title2">Jane Doe</h1>
             <p>Hyperspace Engineer</p>
         </div>
 
-        <!-- Nav -->
+        <!----- Nav ----->
         <nav id="nav">
             <ul>
                 <li>
-                    <a id="home-link" asp-area="" asp-controller="Home" asp-action="Index">
+                    <a id="top-link" asp-area="" asp-controller="Home" asp-action="Index">
                         <span class="icon solid fa-home">Home</span>
                     </a>
                 </li>
@@ -43,17 +50,22 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <span class="icon solid fa-th">Category</span>
                     </a>
                 </li>
-                <li>
-                    <a id="about-link" asp-area="" asp-controller="Home" asp-action="About">
-                        <span class="icon solid fa-user">About Me</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a id="contact-link">
-                        <span class="icon solid fa-envelope">Contact</span>
-                    </a>
-                </li>
+                @if (dasBlogSettings.SiteConfiguration.EnableAboutView)
+                {
+                    <li>
+                        <a id="about-link" asp-area="" asp-controller="Home" asp-action="About">
+                            <span class="icon solid fa-user">About Me</span>
+                        </a>
+                    </li>
+                }
+                @if (dasBlogSettings.SiteConfiguration.EnableContactView)
+                {
+                    <li>
+                        <a id="contact-link">
+                            <span class="icon solid fa-envelope">Contact</span>
+                        </a>
+                    </li>
+                }
                 <li>
                     <a asp-area="" asp-controller="archive" asp-action="archive" id="archive-link">
                         <span class="icon solid fa-user">Archive</span>
@@ -89,18 +101,33 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <span class="icon solid fa-user">Activity</span>
                     </a>
                 </li>
+                <li dasblog-unauthorized>
+                    <a class="nav-link" asp-controller="account" asp-action="login">
+                        <span class="icon solid fa-lock-open">Log in</span>
+                    </a>
+                </li>
+                <li dasblog-authorized>
+                    <a class="nav-link" asp-controller="account" asp-action="logout">
+                        <span class="icon solid fa-lock">Log out</span>
+                    </a>
+                </li>
+
             </ul>
         </nav>
-
-    </div>
+    </div >
 
     <div class="bottom">
 
         <!-- Social Icons -->
         <ul class="icons">
             <li>
-                <a href="#" class="icon brands fa-linkedin">
-                    <span class="label">LinkedIn</span>
+                <a href="#" class="icon brands fa-twitter">
+                    <span class="label">Twitter</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="icon brands fa-facebook-f">
+                    <span class="label">Facebook</span>
                 </a>
             </li>
             <li>
@@ -109,23 +136,25 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 </a>
             </li>
             <li>
+                <a href="#" class="icon brands fa-dribbble">
+                    <span class="label">Dribbble</span>
+                </a>
+            </li>
+            <li>
                 <a href="#" class="icon solid fa-envelope">
                     <span class="label">Email</span>
                 </a>
             </li>
         </ul>
-
     </div>
-
 </div>
+<!----Main----->
 
-<!-- Main -->
 <div id="main">
 
-    <!-- Intro -->
+
     <section id="top" class="one dark cover">
         <div class="container">
-
             <header>
                 <h2 class="alt">
                     Hi! I'm <strong>Prologue</strong>, a <a href="http://html5up.net/license">free</a> responsive<br/>
@@ -137,22 +166,17 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 </p>
             </header>
 
-            <footer>
-                <a href="#portfolio" class="button scrolly">Magna Aliquam</a>
-            </footer>
-
-        </div>
-    </section>
-
-    <!-- Portfolio -->
-    <section id="portfolio" class="two">
-        <div class="container">
+            <partial name="_CookieConsentPartial"/>
             @RenderBody()
-            
-            <site-page-control view-context="@ViewContext" />
-        </div>
-    </section>
-</div>
+
+            <footer>
+                <site-copyright/>
+                <a href="#portfolio"class="button scrolly"> Magna Aliquam </a>
+            </footer >
+
+        </div >
+    </section >
+</div >
 
 <!-- Footer -->
 <div id="footer">
@@ -164,17 +188,30 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 </div>
 
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-
+<script src="~/assets/js/jquery.min.js"></script >
+<script src="~/assets/js/jquery.scrolly.min.js"></script >
+<script src="~/assets/js/jquery.scrollex.min.js"></script >
+<script src="~/assets/js/browser.min.js"></script >
+<script src="~/assets/js/breakpoints.min.js"></script >
+<script src="~/assets/js/util.js"></script >
+<script src="~/assets/js/main.js"></script >
+@* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script > *@
+<script src="~/js/site.js" asp-append-version="true"></script >
+<script src="~/js/enlighterJS/enlighterjs.min.js"></script >
+<script type="text/javascript">
+// INIT CODE - simple page-wide initialization based on css selectors
+// - highlight all pre + code tags (CSS3 selectors)
+// - use javascript as default language
+// - use theme "enlighter" as default theme
+// - replace tabs with 2 spaces
+EnlighterJS.init('pre', 'code',
+{
+    language: 'javascript',
+    theme: 'atomic',
+    indent: 2,
+    grouping: true
+});
+</script >
 @RenderSection("scripts", required: false)
-
 </body>
 </html>
