@@ -87,6 +87,10 @@ namespace DasBlog.Web.Models.AdminViewModels
 		[DisplayName("Enable the About page ")]
 		[Description("This enables the Home/About view and allows you to customize this in the site theme.")]
 		public bool EnableAboutView { get; set; }
+		
+		[DisplayName("Enable the Contact page ")]
+		[Description("This enables the Home/Contact view and allows you to customize this in the site theme.")]
+		public bool EnableContactView { get; set; }
 
 		[DisplayName("RSS day count")]
 		[Description("Maximum number of days to appear in your RSS feed")]

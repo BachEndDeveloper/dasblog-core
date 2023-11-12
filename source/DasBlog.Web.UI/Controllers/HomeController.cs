@@ -20,7 +20,7 @@ using System.Linq;
 namespace DasBlog.Web.Controllers
 {
 	public class HomeController : DasBlogBaseController
-	{
+	{		
 		private readonly IBlogManager blogManager;
 		private readonly IDasBlogSettings dasBlogSettings;
 		private readonly IMapper mapper;
@@ -107,6 +107,14 @@ namespace DasBlog.Web.Controllers
 			return AggregatePostView(lpvm);
 		}
 
+		[HttpGet("contact")]
+		public IActionResult Contact()
+		{
+			DefaultPage("Contact");
+			return View();
+		}
+
+		[HttpGet("about")]
 		public IActionResult About()
 		{
 			if (dasBlogSettings.SiteConfiguration.EnableAboutView)

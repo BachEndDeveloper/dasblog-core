@@ -1,0 +1,198 @@
+﻿@inject IDasBlogSettings dasBlogSettings
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+    <partial name="_HtmlHeadPartial"/>
+    <partial name="_HtmlRSSPartial"/>
+    <partial name="_TwitterCardPartial"/>
+    <partial name="_OpenGraphPartial"/>
+    <partial name="_BlogPostingSchemaOrgPartial"/>
+
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/> *@
+    <link rel="stylesheet" href="~/js/enlighterJS/enlighterjs.min.css"/>
+    <link rel="stylesheet" href="~/assets/css/main.css"/>
+
+    <partial name="_HtmlThemePartial"/>
+
+</head>
+
+<body class="is-preload">
+
+<!------ Header ---->
+<div id="header">
+
+    <div class="top">
+        <!----- Logo ------>
+        <div id="logo">
+            <span class="image avatar48">
+                <img src="images/avatar.jpg" alt=""/>
+            </span>
+            <h1 id="title1">
+                <site-title/>
+            </h1>
+            <h1 id="title2">Jane Doe</h1>
+            <p>Hyperspace Engineer</p>
+        </div>
+
+        <!----- Nav ----->
+        <nav id="nav">
+            <ul>
+                <li>
+                    <a id="top-link" asp-area="" asp-controller="Home" asp-action="Index">
+                        <span class="icon solid fa-home">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="portfolio-link" asp-area="" asp-controller="category" asp-action="category">
+                        <span class="icon solid fa-th">Category</span>
+                    </a>
+                </li>
+                @if (dasBlogSettings.SiteConfiguration.EnableAboutView)
+                {
+                    <li>
+                        <a id="about-link" asp-area="" asp-controller="Home" asp-action="About">
+                            <span class="icon solid fa-user">About Me</span>
+                        </a>
+                    </li>
+                }
+                @if (dasBlogSettings.SiteConfiguration.EnableContactView)
+                {
+                    <li>
+                        <a id="contact-link">
+                            <span class="icon solid fa-envelope">Contact</span>
+                        </a>
+                    </li>
+                }
+                <li>
+                    <a asp-area="" asp-controller="archive" asp-action="archive" id="archive-link">
+                        <span class="icon solid fa-user">Archive</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="feed" asp-action="rss" id="rss-link">
+                        <span class="icon solid fa-user">Subscribe</span>
+                    </a>
+                </li>
+                <li dasblog-authorized>
+                    <a asp-area="" asp-controller="post" asp-action="create" id="createpost-link">
+                        <span class="icon solid fa-user">Create post</span>
+                    </a>
+                </li>
+                <li dasblog-authorized>
+                    <a asp-area="" asp-controller="admin" asp-action="settings" id="site-admin-link">
+                        <span class="icon solid fa-user">Site Admin</span>
+                    </a>
+                </li>
+                <li dasblog-authorized>
+                    <a asp-area="" asp-controller="admin" asp-action="managecomments" id="manage-comments-link">
+                        <span class="icon solid fa-user">Manage comments</span>
+                    </a>
+                </li>
+                <li dasblog-authorized>
+                    <a asp-area="" asp-controller="author" asp-action="index" id="author-link">
+                        <span class="icon solid fa-user">Author</span>
+                    </a>
+                </li>
+                <li dasblog-authorized>
+                    <a asp-area="" asp-controller="activity" asp-action="index" id="activity-link">
+                        <span class="icon solid fa-user">Activity</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div >
+
+    <div class="bottom">
+
+        <!-- Social Icons -->
+        <ul class="icons">
+            <li>
+                <a href="#" class="icon brands fa-twitter">
+                    <span class="label">Twitter</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="icon brands fa-facebook-f">
+                    <span class="label">Facebook</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="icon brands fa-github">
+                    <span class="label">Github</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="icon brands fa-dribbble">
+                    <span class="label">Dribbble</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="icon solid fa-envelope">
+                    <span class="label">Email</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</div >
+<!----Main----->
+
+<div id="main">
+
+
+    <section id="top" class="one dark cover">
+        <div class="container">
+            <header>
+                <h2 class="alt">
+                    Hi! I'm <strong>Prologue</strong>, a <a href="http://html5up.net/license">free</a> responsive<br/>
+                    site template designed by <a href="http://html5up.net">HTML5 UP</a>.
+                </h2>
+                <p>
+                    Ligula scelerisque justo sem accumsan diam quis<br/>
+                    vitae natoque dictum sollicitudin elementum.
+                </p>
+            </header>
+
+            <partial name="_CookieConsentPartial"/>
+            @RenderBody()
+
+            <footer>
+                <site-copyright/>
+                <a href="#portfolio"class="button scrolly"> Magna Aliquam </a>
+            </footer >
+
+        </div >
+    </section >
+</div >
+
+<script src="~/assets/js/jquery.min.js"></script >
+<script src="~/assets/js/jquery.scrolly.min.js"></script >
+<script src="~/assets/js/jquery.scrollex.min.js"></script >
+<script src="~/assets/js/browser.min.js"></script >
+<script src="~/assets/js/breakpoints.min.js"></script >
+<script src="~/assets/js/util.js"></script >
+<script src="~/assets/js/main.js"></script >
+@* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script > *@
+<script src="~/js/site.js" asp-append-version="true"></script >
+<script src="~/js/enlighterJS/enlighterjs.min.js"></script >
+<script type="text/javascript">
+// INIT CODE - simple page-wide initialization based on css selectors
+// - highlight all pre + code tags (CSS3 selectors)
+// - use javascript as default language
+// - use theme "enlighter" as default theme
+// - replace tabs with 2 spaces
+EnlighterJS.init('pre', 'code',
+{
+    language: 'javascript',
+    theme: 'atomic',
+    indent: 2,
+    grouping: true
+});
+</script >
+@RenderSection("scripts", required: false)
+</body>
+</html>

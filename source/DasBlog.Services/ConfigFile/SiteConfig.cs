@@ -103,6 +103,7 @@ namespace DasBlog.Services.ConfigFile
         public bool SendPingbacksByEmail { get; set; }
         public bool SendPostsByEmail { get; set; }
         public bool EnableAboutView { get; set; }
+        public bool EnableContactView { get; set; }
         public string TinyMCEApiKey { get; set; }
         public bool EnableBloggerApi { get; set; }
         public bool EnableComments { get; set; }
