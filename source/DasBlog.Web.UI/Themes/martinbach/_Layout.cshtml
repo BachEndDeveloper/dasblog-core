@@ -10,7 +10,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="~/assets/css/main.css"/>
-
+    <title>@ViewData["PageTitle"]</title>
     <partial name="_HtmlThemePartial"/>
 
 </head>
@@ -127,29 +127,25 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <div class="container">
 
             <header>
+
                 <h2 class="alt">
-                    Hi! I'm <strong>Prologue</strong>, a <a href="http://html5up.net/license">free</a> responsive<br/>
-                    site template designed by <a href="http://html5up.net">HTML5 UP</a>.
+                    @ViewData["PageTitle"]
                 </h2>
                 <p>
-                    Ligula scelerisque justo sem accumsan diam quis<br/>
-                    vitae natoque dictum sollicitudin elementum.
+                    @ViewData["Description"]
                 </p>
-            </header>
 
-            <footer>
-                <a href="#portfolio" class="button scrolly">Magna Aliquam</a>
-            </footer>
+            </header>
 
         </div>
     </section>
 
     <!-- Portfolio -->
-    <section id="portfolio" class="two">
+    <section id="portfolio" class="three">
         <div class="container">
             @RenderBody()
-            
-            <site-page-control view-context="@ViewContext" />
+
+            <site-page-control view-context="@ViewContext"/>
         </div>
     </section>
 </div>
@@ -165,13 +161,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 </div>
 
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="~/assets/js/jquery.min.js"></script>
+@* <script src="~/assets/js/jquery.scrolly.min.js"></script> *@
+@* <script src="~/assets/js/jquery.scrollex.min.js"></script> *@
+@* <script src="~/assets/js/browser.min.js"></script> *@
+@* <script src="~/assets/js/breakpoints.min.js"></script> *@
+<script src="~/assets/js/util.js"></script>
+<script src="~/assets/js/main.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 
 @RenderSection("scripts", required: false)

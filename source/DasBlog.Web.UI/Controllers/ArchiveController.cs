@@ -64,7 +64,16 @@ namespace DasBlog.Web.Controllers
 		[HttpGet("{year}/{month}/{day}")]
 		public IActionResult Archive(int year, int month, int day)
 		{
-			var dateTime = new DateTime(year, month, day);
+			var dtNow = DateTime.Now;
+			var dateTime = new DateTime(dtNow.Year, dtNow.Month, 1);
+			try
+			{
+				dateTime = new DateTime(year, month, day);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError(ex, "Error when setting archive date");
+			}
 			var months = GetMonthsViewModel(dateTime);
 			return View(months);
 		}
